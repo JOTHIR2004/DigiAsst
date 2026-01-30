@@ -1,0 +1,13 @@
+flask
+flask-cors
+google-generativeai
+sentence-transformers
+langchain
+langchain-community
+cassio
+pdfplumber
+google-api-python-client
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+python-dotenv
