@@ -10,7 +10,6 @@ ROOTFOLDERID = os.getenv("ROOTFOLDERID")
 
 ROOT_FOLDER_ID = ROOTFOLDERID
 
-
 def process_pdf(file_id, file_name, company, year):
     local_pdf = download_pdf(file_id, file_name)
     texts = extract_text(local_pdf)

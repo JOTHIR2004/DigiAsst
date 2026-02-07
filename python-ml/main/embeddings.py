@@ -3,7 +3,7 @@ from langchain.embeddings.base import Embeddings
 
 class SBERTEmbeddings(Embeddings):
     def __init__(self):
-        self.model = SentenceTransformer("all-MiniLM-L6-v2")
+        self.model = SentenceTransformer("intfloat/e5-small-v2")
 
     def embed_documents(self, texts):
         return self.model.encode(texts).tolist()
