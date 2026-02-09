@@ -8,45 +8,48 @@ export default function DigiAsst() {
   const [loading, setLoading] = useState(false);
 
   const sendMessage = async () => {
-    if (!input.trim() || !company.trim() || !year.trim()) return;
+  const cleanCompany = company.trim();
+  const cleanYear = year.trim();
+  const cleanInput = input.trim();
 
-    const userMsg = {
-      sender: "user",
-      text: `${input}`,
-      meta: `Company: ${company} | Year: ${year}`,
-    };
+  if (!cleanInput || !cleanCompany || !cleanYear) return;
 
-    setMessages((prev) => [...prev, userMsg]);
-    setInput("");
-    setLoading(true);
-
-    try {
-      const res = await fetch("https://digiasst.onrender.com/api/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          company,
-          year,
-          question: input,
-        }),
-      });
-
-      const data = await res.json();
-
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: data.answer || "No response" },
-      ]);
-    } catch (err) {
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: "Server error" },
-      ]);
-    }
-
-    setLoading(false);
+  const userMsg = {
+    sender: "user",
+    text: cleanInput,
+    meta: `Company: ${cleanCompany} | Year: ${cleanYear}`,
   };
 
+  setMessages((prev) => [...prev, userMsg]);
+  setInput("");
+  setLoading(true);
+
+  try {
+    const res = await fetch("https://digiasst.onrender.com/api/ask", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        company: cleanCompany,
+        year: cleanYear,
+        question: cleanInput,
+      }),
+    });
+
+    const data = await res.json();
+
+    setMessages((prev) => [
+      ...prev,
+      { sender: "bot", text: data.answer || "No response" },
+    ]);
+  } catch (err) {
+    setMessages((prev) => [
+      ...prev,
+      { sender: "bot", text: "Server error" },
+    ]);
+  }
+
+  setLoading(false);
+};
   return (
     <div className="min-h-screen w-full bg-gray-900 flex flex-col overflow-hidden">
 
