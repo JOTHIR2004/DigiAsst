@@ -30,6 +30,7 @@ Rules:
   - Common round sequence
 - If coding questions are present and relevant to the QUESTION, list them first.
 - If the answer is not found, return exactly: NOT FOUND.
+- Do NOT use asterisks (*), bullet points (-), numbering symbols, or bold for formatting.
 
 TEXT:
 <<<
