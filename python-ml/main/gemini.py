@@ -22,7 +22,7 @@ Rules:
 - You MUST NOT generate new words.
 - You MUST ONLY copy text from the TEXT section.
 - If the answer is not found, return exactly: NOT FOUND.
-- Dont repeat the same questions give as a whole questions with numbers and if there is any coding questions listed give it also
+- Dont repeat the same questions give as a whole questions with numbers and if there is any coding questions listed give it also according to the QUESTION.
 TEXT:
 <<<
 {retrieved_text}
