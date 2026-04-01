@@ -1,4 +1,4 @@
-from google import genai
+from groq import Groq
 from dotenv import load_dotenv
 import os
 
@@ -6,10 +6,8 @@ load_dotenv()
 
 APIKEY = os.getenv("APIKEY")
 
-# Create Gemini client
-client = genai.Client(
-    api_key=APIKEY
-)
+# Create Groq client
+client = Groq(api_key=APIKEY)
 
 def extract_answer(question, retrieved_text):
     prompt = f"""
@@ -38,9 +36,12 @@ TEXT:
 >>>
 """
 
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",  # fast + free
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0  # important for extraction accuracy
     )
 
-    return response.text.strip()
+    return response.choices[0].message.content.strip()
