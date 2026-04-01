@@ -8,5 +8,5 @@ cassio
 python-dotenv
 requests
 gunicorn
-
+groq
 
